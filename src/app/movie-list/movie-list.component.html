@@ -1,0 +1,9 @@
+<p>movie-list works!</p>
+
+<ul>
+  <li *ngFor="let movie of movies; let first = first">
+    <p *ngIf="first">FIRST!</p>
+    <p *ngIf="!first">SECOND OR LATER</p>
+    {{ movie.id }} - {{ movie.title }} - {{ movie.year }} - {{ movie.rating }}
+  </li>
+</ul>
