@@ -1,0 +1,5 @@
+<li>
+  {{ movie.id }} - {{ movie.title }} - {{ movie.year }} - {{ movie.rating }}
+  <button [routerLink]="['/movies', 'edit', movie.id]">EDIT</button>
+  <button (click)="onDeleteClick()">DELETE</button>
+</li>

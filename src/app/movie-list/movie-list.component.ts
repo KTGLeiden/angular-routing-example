@@ -18,4 +18,17 @@ export class MovieListComponent implements OnInit {
       this.movies = movies;
     });
   }
+
+  public onDelete(movieToDelete: Movie) {
+    if (confirm(`Are you sure you want to delete movie ${movieToDelete.title} with id ${movieToDelete.id}?`)) {
+      this.movieService.deleteMovie(movieToDelete).subscribe(() => {
+        // Delete movie with id {movieToDelete.id}
+        this.movies = this.movies.filter((movie) => movie.id !== movieToDelete.id);
+      });
+    }
+  }
+
+  public testMethod(): void {
+    console.log('it worked!');
+  }
 }

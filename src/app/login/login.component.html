@@ -1,0 +1,11 @@
+<p>login works!</p>
+
+<h2>
+  Logged in: <b>{{ loggedIn ? "yes" : "no" }}</b>
+</h2>
+
+<button [routerLink]="['/admin']">Go to admin page</button>
+<hr />
+
+<button *ngIf="!loggedIn" (click)="login()">Log in</button>
+<button *ngIf="loggedIn" (click)="logout()">Log out</button>

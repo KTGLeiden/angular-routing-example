@@ -23,9 +23,31 @@ export class MovieService {
   }
 
   /**
+   * Updates a movie
+   */
+  public updateMovie(movie: Movie): Observable<void> {
+    return this.http.put<void>(this.apiUrl, movie);
+  }
+
+  /**
    * Returns all the movies.
    */
   public getMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.apiUrl);
+  }
+
+  /**
+   * Returns one movie.
+   */
+  public getMovie(id: number): Observable<Movie> {
+    return this.http.get<Movie>(`${this.apiUrl}/${id}`);
+  }
+
+  /**
+   * Deletes a movie
+   * @param movie The movie to delete
+   */
+  public deleteMovie(movie: Movie): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${movie.id}`);
   }
 }
