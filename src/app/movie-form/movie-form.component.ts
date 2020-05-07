@@ -1,53 +1,25 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Movie } from '../shared/models/movie';
-import { MovieService } from '../shared/services/movie.service';
+import { MovieForm } from './movie.form';
 
 @Component({
   selector: 'app-movie-form',
   templateUrl: './movie-form.component.html',
   styleUrls: ['./movie-form.component.css'],
 })
-export class MovieFormComponent implements OnInit, OnDestroy {
+export class MovieFormComponent {
   @Output()
   public save = new EventEmitter<Movie>();
+  public readonly form: MovieForm = new MovieForm();
 
-  @Input()
-  public movie: Movie;
-
-  public movieTitle: string;
-  public movieYear: number;
-  public movieRating: number;
-
-  public subscription: Subscription;
-
-  constructor(private readonly movieService: MovieService) {}
+  public get isFormValid(): boolean {
+    return this.form.valid;
+  }
 
   public saveMovie(): void {
-    const newMovie: Movie = {
-      rating: this.movieRating,
-      title: this.movieTitle,
-      year: this.movieYear,
-    };
-
-    // output
-    this.save.emit(newMovie);
-
-    // this.subscription = this.movieService.addMovie(newMovie).subscribe((movie) => {
-    //   alert(`We added a movie with id ${movie.id}!`);
-    // });
-  }
-
-  ngOnInit(): void {
-    if (this.movie) {
-      // Initialize form for update
-      this.movieRating = this.movie.rating;
-    }
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+    if (this.form.valid) {
+      // output
+      this.save.emit(this.form.getModel());
     }
   }
 }

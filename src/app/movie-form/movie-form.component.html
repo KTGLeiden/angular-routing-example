@@ -1,5 +1,11 @@
-<input type="text" placeholder="Title" [(ngModel)]="movieTitle" /><br />
-<input type="number" placeholder="Year" [(ngModel)]="movieYear" /><br />
-<input type="number" placeholder="Rating" [(ngModel)]="movieRating" /><br />
+<form [formGroup]="form">
+  <input type="text" placeholder="Title" formControlName="title" />
+  <p style="color: red;" *ngIf="form.controls.title.invalid">Invalid input!!</p>
+  <br />
+  <input type="number" placeholder="Year" formControlName="year" /><br />
+  <input type="number" placeholder="Rating" formControlName="rating" /><br />
 
-<button (click)="saveMovie()">Add movie!</button>
+  <p>Is the form currently valid? {{ form.valid ? "Yes" : "No" }}</p>
+
+  <button (click)="saveMovie()" type="button">Add movie!</button>
+</form>
