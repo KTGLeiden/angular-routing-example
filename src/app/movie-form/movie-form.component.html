@@ -1,11 +1,12 @@
 <form [formGroup]="form">
-  <input type="text" placeholder="Title" formControlName="title" />
-  <p style="color: red;" *ngIf="form.controls.title.invalid">Invalid input!!</p>
-  <br />
+  <input type="text" placeholder="Title" formControlName="title" /><br />
+  <span style="color: red;" *ngIf="form.controls.title.invalid">Invalid input!!<br /></span>
   <input type="number" placeholder="Year" formControlName="year" /><br />
+  <span style="color: red;" *ngIf="form.controls.year.invalid">Invalid input!!<br /></span>
   <input type="number" placeholder="Rating" formControlName="rating" /><br />
+  <span style="color: red;" *ngIf="form.controls.rating.invalid">Invalid input!!<br /></span>
 
   <p>Is the form currently valid? {{ form.valid ? "Yes" : "No" }}</p>
 
-  <button (click)="saveMovie()" type="button">Add movie!</button>
+  <button [disabled]="form.invalid" (click)="saveMovie()" type="button">Add movie!</button>
 </form>

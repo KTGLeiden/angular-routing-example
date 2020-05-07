@@ -18,8 +18,9 @@ export class MovieFormComponent {
 
   public saveMovie(): void {
     if (this.form.valid) {
-      // output
       this.save.emit(this.form.getModel());
+    } else {
+      alert('Form is not valid! Check the fields!');
     }
   }
 }

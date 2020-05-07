@@ -23,7 +23,9 @@ export class MovieListComponent implements OnInit {
 
   public onDelete(movieToDelete: Movie) {
     const modal = this.ngbModalService.open(ConfirmationModalComponent);
-    (modal.componentInstance as ConfirmationModalComponent).text = `Are you sure you want to delete movie ${movieToDelete.title} with id ${movieToDelete.id}?`;
+    const modalComponent = modal.componentInstance as ConfirmationModalComponent;
+    modalComponent.text = `Are you sure you want to delete movie ${movieToDelete.title} with id ${movieToDelete.id}?`;
+    modalComponent.title = 'Are you sure?';
 
     modal.result.then(
       () => {

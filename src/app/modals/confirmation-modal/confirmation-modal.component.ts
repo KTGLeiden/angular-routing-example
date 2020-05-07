@@ -8,5 +8,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ConfirmationModalComponent {
   public text: string;
+  public title: string;
   constructor(public readonly activeModal: NgbActiveModal) {}
 }
