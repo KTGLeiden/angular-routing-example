@@ -1,0 +1,4 @@
+<div *ngFor="let videoId of movieIdList">
+  <img [src]="getThumbnailUrl(videoId)" [routerLink]="[videoId]" />
+  <br />
+</div>
